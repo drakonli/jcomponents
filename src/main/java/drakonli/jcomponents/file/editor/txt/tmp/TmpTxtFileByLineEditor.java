@@ -5,7 +5,7 @@ import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
 import drakonli.jcomponents.file.editor.txt.exception.NoLineQualifiedForEditException;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.jcomponents.file.writer.factory.FileWriterFactoryInterface;
-import drakonli.jcomponents.file.matcher.LineToEditMatcherInterface;
+import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,7 +34,7 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
         this.fileWriterFactory = fileWriterFactory;
     }
 
-    public void edit(File file, TxtLineEditorInterface lineEditor, LineToEditMatcherInterface lineToEditMatcher)
+    public void edit(File file, TxtLineEditorInterface lineEditor, TxtLinePredicateInterface lineToEditPredicate)
             throws IOException, NoLineQualifiedForEditException
     {
         File tmpFile = File.createTempFile(
@@ -51,7 +51,7 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
         while (null != (currentLine = fileReader.readLine())) {
             currentLine = currentLine.concat(System.lineSeparator());
 
-            if (lineToEditMatcher.match(currentLine)) {
+            if (lineToEditPredicate.test(currentLine)) {
                 fileIsQualified = true;
 
                 currentLine = lineEditor.editLine(currentLine);

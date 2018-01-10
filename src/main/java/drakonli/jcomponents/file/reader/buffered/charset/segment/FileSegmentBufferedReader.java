@@ -1,6 +1,6 @@
 package drakonli.jcomponents.file.reader.buffered.charset.segment;
 
-import drakonli.jcomponents.matcher.MatcherInterface;
+import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,33 +13,33 @@ import java.io.Reader;
  */
 public class FileSegmentBufferedReader extends BufferedReader
 {
-    private final MatcherInterface<String> skipToLineMatcher;
-    private final MatcherInterface<String> skipFromLineMatcher;
+    private final TxtLinePredicateInterface skipToLinePredicate;
+    private final TxtLinePredicateInterface skipFromLinePredicate;
 
     private Boolean startSkipped = false;
 
     public FileSegmentBufferedReader(
             Reader in, int sz,
-            MatcherInterface<String> skipFromLineMatcher,
-            MatcherInterface<String> skipToLineMatcher
+            TxtLinePredicateInterface skipFromLinePredicate,
+            TxtLinePredicateInterface skipToLinePredicate
     ) throws IOException
     {
         super(in, sz);
-        this.skipFromLineMatcher = skipFromLineMatcher;
-        this.skipToLineMatcher = skipToLineMatcher;
+        this.skipFromLinePredicate = skipFromLinePredicate;
+        this.skipToLinePredicate = skipToLinePredicate;
 
         this.skipStart();
     }
 
     public FileSegmentBufferedReader(
             Reader in,
-            MatcherInterface<String> skipFromLineMatcher,
-            MatcherInterface<String> skipToLineMatcher
+            TxtLinePredicateInterface skipFromLinePredicate,
+            TxtLinePredicateInterface skipToLinePredicate
     ) throws IOException
     {
         super(in);
-        this.skipFromLineMatcher = skipFromLineMatcher;
-        this.skipToLineMatcher = skipToLineMatcher;
+        this.skipFromLinePredicate = skipFromLinePredicate;
+        this.skipToLinePredicate = skipToLinePredicate;
 
         this.skipStart();
     }
@@ -48,14 +48,14 @@ public class FileSegmentBufferedReader extends BufferedReader
     {
         String currentLine;
         while (null != (currentLine = this.readLine())) {
-            if (this.skipFromLineMatcher.match(currentLine)) {
+            if (this.skipFromLinePredicate.test(currentLine)) {
                 this.startSkipped = true;
 
                 return;
             }
         }
 
-        throw new InvalidSkipToMatcherException();
+        throw new InvalidSkipToPredicateException();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class FileSegmentBufferedReader extends BufferedReader
     {
         String currentLine = super.readLine();
 
-        if (this.startSkipped && null != currentLine && this.skipToLineMatcher.match(currentLine)) {
+        if (this.startSkipped && null != currentLine && this.skipToLinePredicate.test(currentLine)) {
             return null;
         }
 

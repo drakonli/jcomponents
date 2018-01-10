@@ -1,25 +1,25 @@
 package drakonli.jcomponents.file.reader.buffered.charset.segment;
 
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
-import drakonli.jcomponents.matcher.MatcherInterface;
+import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
 public class FileSegmentBufferedCharsetReaderFactory implements BufferedFileReaderFactoryInterface
 {
-    final private MatcherInterface<String> skipFromLineMatcher;
-    final private MatcherInterface<String> skipToLineMatcher;
+    final private TxtLinePredicateInterface skipFromLinePredicate;
+    final private TxtLinePredicateInterface skipToLinePredicate;
     final private Charset charset;
 
     public FileSegmentBufferedCharsetReaderFactory(
-            MatcherInterface<String> skipFromLineMatcher,
-            MatcherInterface<String> skipToLineMatcher,
+            TxtLinePredicateInterface skipFromLinePredicate,
+            TxtLinePredicateInterface skipToLinePredicate,
             Charset charset
     )
     {
-        this.skipFromLineMatcher = skipFromLineMatcher;
-        this.skipToLineMatcher = skipToLineMatcher;
+        this.skipFromLinePredicate = skipFromLinePredicate;
+        this.skipToLinePredicate = skipToLinePredicate;
         this.charset = charset;
     }
 
@@ -31,8 +31,8 @@ public class FileSegmentBufferedCharsetReaderFactory implements BufferedFileRead
                         new FileInputStream(file),
                         this.charset
                 ),
-                this.skipFromLineMatcher,
-                this.skipToLineMatcher
+                this.skipFromLinePredicate,
+                this.skipToLinePredicate
         );
     }
 }
