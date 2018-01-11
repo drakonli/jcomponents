@@ -3,8 +3,7 @@ package drakonli.jcomponents.file.backuper;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.nio.file.StandardCopyOption;
 
 public class FileBackuper
 {
@@ -16,6 +15,6 @@ public class FileBackuper
             return;
         }
 
-        Files.copy(file.toPath(), backupFile.toPath(), REPLACE_EXISTING);
+        Files.copy(file.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 }
