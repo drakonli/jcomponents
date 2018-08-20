@@ -7,7 +7,7 @@ import java.nio.file.StandardCopyOption;
 
 public class FileBackuper
 {
-    public void backupOriginal(File file) throws IOException
+    public void backup(File file) throws IOException
     {
         File backupFile = new File(file.getName());
 
