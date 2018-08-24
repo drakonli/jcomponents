@@ -6,7 +6,7 @@
 
     <groupId>com.github.drakonli</groupId>
     <artifactId>jcomponents</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>master-SNAPSHOT</version>
 
     <properties>
         <!-- The final name for the JAR that you can find in target directory-->
