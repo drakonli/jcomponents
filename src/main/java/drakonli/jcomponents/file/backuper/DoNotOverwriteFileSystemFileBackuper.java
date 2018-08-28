@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class ReplaceExistingFileSystemFileBackuper implements IFileBackuper
+public class DoNotOverwriteFileSystemFileBackuper implements IFileBackuper
 {
     @Override
     public void backup(File file) throws IOException
