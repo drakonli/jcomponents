@@ -1,11 +1,11 @@
 package drakonli.jcomponents.file.reader.buffered.charset;
 
-import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
+import drakonli.jcomponents.file.reader.buffered.IBufferedFileReaderFactory;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class BufferedCharsetFileReaderFactory implements BufferedFileReaderFactoryInterface
+public class BufferedCharsetFileReaderFactory implements IBufferedFileReaderFactory
 {
     final private Charset charset;
 

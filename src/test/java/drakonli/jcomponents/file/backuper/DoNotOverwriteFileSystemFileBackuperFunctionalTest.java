@@ -1,5 +1,7 @@
 package drakonli.jcomponents.file.backuper;
 
+import drakonli.jcomponents.file.factory.ByNameFileFactory;
+import drakonli.jcomponents.file.manager.NioFileManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +14,17 @@ import java.nio.file.StandardCopyOption;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class DoNotOverwriteFileSystemFileBackuperTest
+public class DoNotOverwriteFileSystemFileBackuperFunctionalTest
 {
     private DoNotOverwriteFileSystemFileBackuper backuper;
 
     @Before
     public void setUp()
     {
-        this.backuper = new DoNotOverwriteFileSystemFileBackuper();
+        this.backuper = new DoNotOverwriteFileSystemFileBackuper(
+                new ByNameFileFactory(),
+                new NioFileManager("tmp_file", ".txt")
+        );
     }
 
     @Test

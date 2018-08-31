@@ -4,7 +4,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 
-public class GuessedDirectoryTxtFileChooserFactory implements FileChooserFactoryInterface
+public class GuessedDirectoryTxtFileChooserFactory implements IFileChooserFactory
 {
     private final String[] initialDirectoryGuesses;
     private final String[] allowedExtensions;

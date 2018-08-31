@@ -3,7 +3,7 @@ package drakonli.jcomponents.notificator;
 import drakonli.jcomponents.alert.ISimpleAlertFactory;
 import javafx.scene.control.Alert;
 
-public class AlertNotificator implements NotificatorInterface
+public class AlertNotificator implements INotificator
 {
     private final ISimpleAlertFactory simpleAlertFactory;
 

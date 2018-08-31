@@ -3,7 +3,7 @@ package drakonli.jcomponents.file.writer.factory;
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class BufferedCharsetFileWriterFactory implements FileWriterFactoryInterface
+public class BufferedCharsetFileWriterFactory implements IFileWriterFactory
 {
     final private Charset charset;
 

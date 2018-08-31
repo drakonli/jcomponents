@@ -1,6 +1,6 @@
 package drakonli.jcomponents.file.editor.txt;
 
-public interface TxtLineEditorInterface
+public interface ITxtLineEditor
 {
     String editLine(String line);
 }

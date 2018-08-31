@@ -1,46 +1,40 @@
 package drakonli.jcomponents.file.editor.txt.tmp;
 
-import drakonli.jcomponents.file.editor.txt.TxtFileByLineEditorInterface;
-import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
+import drakonli.jcomponents.file.editor.txt.ITxtFileByLineEditor;
+import drakonli.jcomponents.file.editor.txt.ITxtLineEditor;
 import drakonli.jcomponents.file.editor.txt.exception.NoLineQualifiedForEditException;
-import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
-import drakonli.jcomponents.file.writer.factory.FileWriterFactoryInterface;
-import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
+import drakonli.jcomponents.file.manager.IFileManager;
+import drakonli.jcomponents.file.reader.buffered.IBufferedFileReaderFactory;
+import drakonli.jcomponents.file.writer.factory.IFileWriterFactory;
+import drakonli.jcomponents.predicate.ITxtLinePredicate;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
+public class TmpTxtFileByLineEditor implements ITxtFileByLineEditor
 {
-    private final String tmpFilePrefix;
-    private final String tmpFileSuffix;
-    private final BufferedFileReaderFactoryInterface bufferedReaderFactory;
-    private final FileWriterFactoryInterface fileWriterFactory;
+    private final IBufferedFileReaderFactory bufferedReaderFactory;
+    private final IFileWriterFactory         fileWriterFactory;
+    private final IFileManager               fileManager;
 
     public TmpTxtFileByLineEditor(
-            String tmpFilePrefix,
-            String tmpFileSuffix,
-            BufferedFileReaderFactoryInterface bufferedReaderFactory,
-            FileWriterFactoryInterface fileWriterFactory
+            IBufferedFileReaderFactory bufferedReaderFactory,
+            IFileWriterFactory fileWriterFactory,
+            IFileManager fileManager
     )
     {
-        this.tmpFilePrefix = tmpFilePrefix;
-        this.tmpFileSuffix = tmpFileSuffix;
         this.bufferedReaderFactory = bufferedReaderFactory;
         this.fileWriterFactory = fileWriterFactory;
+        this.fileManager = fileManager;
     }
 
-    public void edit(File file, TxtLineEditorInterface lineEditor, TxtLinePredicateInterface lineToEditPredicate)
+    public void edit(File file, ITxtLineEditor lineEditor, ITxtLinePredicate lineToEditPredicate)
             throws IOException, NoLineQualifiedForEditException
     {
-        File tmpFile = File.createTempFile(
-                this.tmpFilePrefix,
-                this.tmpFileSuffix
-        );
+        File tmpFile = this.fileManager.createTempFile();
 
         BufferedReader fileReader = this.bufferedReaderFactory.createFileReader(file);
         Writer writer = this.fileWriterFactory.createWriter(tmpFile);
@@ -67,6 +61,6 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
             throw new NoLineQualifiedForEditException();
         }
 
-        Files.move(tmpFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        this.fileManager.move(tmpFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
 }

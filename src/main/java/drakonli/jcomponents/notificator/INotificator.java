@@ -1,6 +1,6 @@
 package drakonli.jcomponents.notificator;
 
-public interface NotificatorInterface
+public interface INotificator
 {
     void success(String message);
 

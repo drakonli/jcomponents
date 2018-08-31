@@ -1,13 +1,22 @@
 package drakonli.jcomponents.file.manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.FileAttribute;
 
 public class NioFileManager implements IFileManager
 {
+    private final String tmpFilePrefix;
+    private final String tmpFileSuffix;
+
+    public NioFileManager(String tmpFilePrefix, String tmpFileSuffix)
+    {
+        this.tmpFilePrefix = tmpFilePrefix;
+        this.tmpFileSuffix = tmpFileSuffix;
+    }
+
     @Override
     public Path move(Path source, Path target, CopyOption... options) throws IOException
     {
@@ -27,8 +36,14 @@ public class NioFileManager implements IFileManager
     }
 
     @Override
-    public Path createTempFile(String prefix, String suffix, FileAttribute<?>... attrs) throws IOException
+    public File createTempFile(String prefix, String suffix) throws IOException
     {
-        return Files.createTempFile(prefix, suffix, attrs);
+        return File.createTempFile(prefix, suffix);
+    }
+
+    @Override
+    public File createTempFile() throws IOException
+    {
+        return this.createTempFile(this.tmpFilePrefix, this.tmpFileSuffix);
     }
 }

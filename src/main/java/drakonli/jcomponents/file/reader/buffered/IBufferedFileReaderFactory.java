@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 
-public interface BufferedFileReaderFactoryInterface
+public interface IBufferedFileReaderFactory
 {
     BufferedReader createFileReader(File file) throws IOException;
 }

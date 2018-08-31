@@ -1,9 +1,9 @@
 package drakonli.jcomponents.file.manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.Path;
-import java.nio.file.attribute.FileAttribute;
 
 public interface IFileManager
 {
@@ -24,12 +24,12 @@ public interface IFileManager
 
     /**
      * Creates an empty file in the default temporary-file directory, using
-     * the given prefix and suffix to generate its name. The resulting {@code
-     * Path} is associated with the default {@code FileSystem}.
+     * the given prefix and suffix to generate its name
      */
-    public Path createTempFile(
-            String prefix,
-            String suffix,
-            FileAttribute<?>... attrs
-    ) throws IOException;
+    public File createTempFile(String prefix, String suffix) throws IOException;
+
+    /**
+     * Creates an empty file in the default temporary-file directory. Uses default prefix and suffix.
+     */
+    public File createTempFile() throws IOException;
 }
