@@ -43,8 +43,6 @@ public class TmpTxtFileByLineEditor implements ITxtFileByLineEditor
 
         String currentLine;
         while (null != (currentLine = fileReader.readLine())) {
-            currentLine = currentLine.concat(System.lineSeparator());
-
             if (lineToEditPredicate.test(currentLine)) {
                 fileIsQualified = true;
 

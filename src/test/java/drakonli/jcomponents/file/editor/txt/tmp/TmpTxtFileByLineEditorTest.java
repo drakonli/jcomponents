@@ -95,9 +95,9 @@ public class TmpTxtFileByLineEditorTest
                 .thenReturn("third string")
                 .thenReturn(null);
 
-        when(this.predicateMock.test("first string" + System.lineSeparator())).thenReturn(false);
-        when(this.predicateMock.test("second string" + System.lineSeparator())).thenReturn(false);
-        when(this.predicateMock.test("third string" + System.lineSeparator())).thenReturn(false);
+        when(this.predicateMock.test("first string")).thenReturn(false);
+        when(this.predicateMock.test("second string")).thenReturn(false);
+        when(this.predicateMock.test("third string")).thenReturn(false);
 
         try {
             this.testedEditor.edit(this.fileMock, this.editorMock, this.predicateMock);
@@ -108,9 +108,9 @@ public class TmpTxtFileByLineEditorTest
         verify(this.editorMock, never()).editLine(anyString());
 
         verify(this.writerMock, times(3)).write(anyString());
-        verify(this.writerMock).write("first string" + System.lineSeparator());
-        verify(this.writerMock).write("second string" + System.lineSeparator());
-        verify(this.writerMock).write("third string" + System.lineSeparator());
+        verify(this.writerMock).write("first string");
+        verify(this.writerMock).write("second string");
+        verify(this.writerMock).write("third string");
 
         verify(this.readerMock).close();
         verify(this.writerMock).close();
@@ -127,20 +127,20 @@ public class TmpTxtFileByLineEditorTest
                 .thenReturn("third string")
                 .thenReturn(null);
 
-        when(this.predicateMock.test("first string" + System.lineSeparator())).thenReturn(true);
-        when(this.predicateMock.test("second string" + System.lineSeparator())).thenReturn(false);
-        when(this.predicateMock.test("third string" + System.lineSeparator())).thenReturn(true);
+        when(this.predicateMock.test("first string")).thenReturn(true);
+        when(this.predicateMock.test("second string")).thenReturn(false);
+        when(this.predicateMock.test("third string")).thenReturn(true);
 
-        when(this.editorMock.editLine("first string" + System.lineSeparator())).thenReturn("result first line");
-        when(this.editorMock.editLine("third string" + System.lineSeparator())).thenReturn("result third line");
+        when(this.editorMock.editLine("first string")).thenReturn("result first line");
+        when(this.editorMock.editLine("third string")).thenReturn("result third line");
 
         this.testedEditor.edit(this.fileMock, this.editorMock, this.predicateMock);
 
-        verify(this.editorMock, never()).editLine("second string" + System.lineSeparator());
+        verify(this.editorMock, never()).editLine("second string");
 
         verify(this.writerMock, times(3)).write(anyString());
         verify(this.writerMock).write("result first line");
-        verify(this.writerMock).write("second string" + System.lineSeparator());
+        verify(this.writerMock).write("second string");
         verify(this.writerMock).write("result third line");
 
         verify(this.readerMock).close();

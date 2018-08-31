@@ -1,6 +1,6 @@
 package drakonli.jcomponents.file.reader.buffered.charset;
 
-import drakonli.jcomponents.file.impl.BufferedCharsetFileReaderFactory;
+import drakonli.jcomponents.file.impl.BufferedCharsetLineEndingIncludedFileReaderFactory;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.mockito.internal.matchers.apachecommons.ReflectionEquals;
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class BufferedCharsetFileReaderFactoryTest
+public class BufferedCharsetLineEndingIncludedFileReaderFactoryTest
 {
     @Test
     @Ignore("Skipping test. Can not find a way to test equality of resulting readers")
@@ -26,7 +26,8 @@ public class BufferedCharsetFileReaderFactoryTest
                         )
                 );
 
-        BufferedReader actualReader = (new BufferedCharsetFileReaderFactory(charset)).createFileReader(file);
+        BufferedReader actualReader = (new BufferedCharsetLineEndingIncludedFileReaderFactory(charset))
+                .createFileReader(file);
 
         Assert.assertThat(expectedReader, new ReflectionEquals(actualReader));
     }

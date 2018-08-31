@@ -5,11 +5,11 @@ import drakonli.jcomponents.file.IBufferedFileReaderFactory;
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class BufferedCharsetFileReaderFactory implements IBufferedFileReaderFactory
+public class BufferedCharsetLineEndingIncludedFileReaderFactory implements IBufferedFileReaderFactory
 {
     final private Charset charset;
 
-    public BufferedCharsetFileReaderFactory(Charset charset)
+    public BufferedCharsetLineEndingIncludedFileReaderFactory(Charset charset)
     {
         this.charset = charset;
     }
@@ -17,7 +17,7 @@ public class BufferedCharsetFileReaderFactory implements IBufferedFileReaderFact
     @Override
     public BufferedReader createFileReader(File file) throws IOException
     {
-        return new BufferedReader(
+        return new BufferedReaderLineEndingIncluded(
                 new InputStreamReader(
                         new FileInputStream(file),
                         this.charset
