@@ -1,7 +1,8 @@
 package drakonli.jcomponents.file.backuper;
 
-import drakonli.jcomponents.file.factory.ByNameFileFactory;
-import drakonli.jcomponents.file.manager.NioFileManager;
+import drakonli.jcomponents.file.impl.ByNameFileFactory;
+import drakonli.jcomponents.file.impl.DoNotOverwriteFileSystemFileBackuper;
+import drakonli.jcomponents.file.impl.NioFileManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;

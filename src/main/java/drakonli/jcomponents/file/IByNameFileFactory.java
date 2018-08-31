@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.factory;
+package drakonli.jcomponents.file;
 
 import java.io.File;
 

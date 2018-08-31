@@ -1,4 +1,4 @@
-package drakonli.jcomponents.notificator;
+package drakonli.jcomponents;
 
 public interface INotificator
 {

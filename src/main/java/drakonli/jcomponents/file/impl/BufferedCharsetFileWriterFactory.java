@@ -1,4 +1,6 @@
-package drakonli.jcomponents.file.writer.factory;
+package drakonli.jcomponents.file.impl;
+
+import drakonli.jcomponents.file.IFileWriterFactory;
 
 import java.io.*;
 import java.nio.charset.Charset;

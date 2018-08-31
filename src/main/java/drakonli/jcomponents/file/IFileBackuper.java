@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.backuper;
+package drakonli.jcomponents.file;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package drakonli.jcomponents.alert;
+package drakonli.jcomponents;
 
 import javafx.scene.control.Alert;
 

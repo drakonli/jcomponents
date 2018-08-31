@@ -1,5 +1,6 @@
-package drakonli.jcomponents.alert;
+package drakonli.jcomponents.impl;
 
+import drakonli.jcomponents.ISimpleAlertFactory;
 import javafx.scene.control.Alert;
 
 public class SimpleAlertFactory implements ISimpleAlertFactory

@@ -1,5 +1,6 @@
 package drakonli.jcomponents.file.chooser;
 
+import drakonli.jcomponents.file.impl.GuessedDirectoryWithAllowedExtensionsFileChooserFactory;
 import javafx.stage.FileChooser;
 import org.junit.Test;
 
@@ -11,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class GuessedDirectoryTxtFileChooserFactoryTest
+public class GuessedDirectoryWithAllowedExtensionsFileChooserFactoryTest
 {
 
     @Test
@@ -25,7 +26,7 @@ public class GuessedDirectoryTxtFileChooserFactoryTest
                 Arrays.asList(allowedExtensions.clone()));
 
         FileChooser actualFileChooser =
-                (new GuessedDirectoryTxtFileChooserFactory(
+                (new GuessedDirectoryWithAllowedExtensionsFileChooserFactory(
                         directories,
                         allowedExtensions,
                         expectedExtDescription,

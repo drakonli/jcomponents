@@ -1,4 +1,6 @@
-package drakonli.jcomponents.file.manager;
+package drakonli.jcomponents.file.impl;
+
+import drakonli.jcomponents.file.IFileManager;
 
 import java.io.File;
 import java.io.IOException;

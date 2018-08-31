@@ -1,7 +1,8 @@
-package drakonli.jcomponents.file.editor.txt;
+package drakonli.jcomponents.file;
 
-import drakonli.jcomponents.file.editor.txt.exception.NoLineQualifiedForEditException;
-import drakonli.jcomponents.predicate.ITxtLinePredicate;
+import drakonli.jcomponents.ITxtLineEditor;
+import drakonli.jcomponents.ITxtLinePredicate;
+import drakonli.jcomponents.exception.NoLineQualifiedForEditException;
 
 import java.io.File;
 import java.io.IOException;

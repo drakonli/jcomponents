@@ -1,6 +1,6 @@
-package drakonli.jcomponents.file.reader.buffered.charset;
+package drakonli.jcomponents.file.impl;
 
-import drakonli.jcomponents.file.reader.buffered.IBufferedFileReaderFactory;
+import drakonli.jcomponents.file.IBufferedFileReaderFactory;
 
 import java.io.*;
 import java.nio.charset.Charset;

@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.chooser;
+package drakonli.jcomponents.file;
 
 import javafx.stage.FileChooser;
 

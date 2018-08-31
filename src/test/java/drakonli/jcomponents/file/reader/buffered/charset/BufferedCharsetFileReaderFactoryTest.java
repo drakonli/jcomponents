@@ -1,5 +1,6 @@
 package drakonli.jcomponents.file.reader.buffered.charset;
 
+import drakonli.jcomponents.file.impl.BufferedCharsetFileReaderFactory;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;

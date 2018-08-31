@@ -1,5 +1,6 @@
 package drakonli.jcomponents.alert;
 
+import drakonli.jcomponents.impl.SimpleAlertFactory;
 import drakonli.util.JavaFXThreadingRule;
 import javafx.scene.control.Alert;
 import org.junit.Rule;

@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.editor.txt;
+package drakonli.jcomponents;
 
 public interface ITxtLineEditor
 {

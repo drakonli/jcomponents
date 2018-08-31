@@ -1,5 +1,6 @@
 package drakonli.jcomponents.file.factory;
 
+import drakonli.jcomponents.file.impl.ByNameFileFactory;
 import org.junit.Test;
 
 import java.io.File;

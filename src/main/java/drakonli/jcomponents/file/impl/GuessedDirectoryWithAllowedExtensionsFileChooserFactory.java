@@ -1,17 +1,18 @@
-package drakonli.jcomponents.file.chooser;
+package drakonli.jcomponents.file.impl;
 
+import drakonli.jcomponents.file.IFileChooserFactory;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 
-public class GuessedDirectoryTxtFileChooserFactory implements IFileChooserFactory
+public class GuessedDirectoryWithAllowedExtensionsFileChooserFactory implements IFileChooserFactory
 {
     private final String[] initialDirectoryGuesses;
     private final String[] allowedExtensions;
     private final String allowedExtensionsDescription;
     private final String title;
 
-    public GuessedDirectoryTxtFileChooserFactory(
+    public GuessedDirectoryWithAllowedExtensionsFileChooserFactory(
             String[] initialDirectoryGuesses,
             String[] allowedExtensions,
             String allowedExtensionsDescription,
@@ -28,7 +29,7 @@ public class GuessedDirectoryTxtFileChooserFactory implements IFileChooserFactor
     public FileChooser createFileChooser()
     {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle(title);
+        fileChooser.setTitle(this.title);
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
                 this.allowedExtensionsDescription,
                 this.allowedExtensions

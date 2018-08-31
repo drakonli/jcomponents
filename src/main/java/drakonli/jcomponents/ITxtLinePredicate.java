@@ -1,4 +1,4 @@
-package drakonli.jcomponents.predicate;
+package drakonli.jcomponents;
 
 import java.util.function.Predicate;
 

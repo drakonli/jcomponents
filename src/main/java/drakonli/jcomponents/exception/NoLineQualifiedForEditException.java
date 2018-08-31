@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.editor.txt.exception;
+package drakonli.jcomponents.exception;
 
 public class NoLineQualifiedForEditException extends Exception
 {

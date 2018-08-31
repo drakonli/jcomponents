@@ -1,7 +1,8 @@
-package drakonli.jcomponents.file.backuper;
+package drakonli.jcomponents.file.impl;
 
-import drakonli.jcomponents.file.factory.IByNameFileFactory;
-import drakonli.jcomponents.file.manager.IFileManager;
+import drakonli.jcomponents.file.IByNameFileFactory;
+import drakonli.jcomponents.file.IFileBackuper;
+import drakonli.jcomponents.file.IFileManager;
 
 import java.io.File;
 import java.io.IOException;

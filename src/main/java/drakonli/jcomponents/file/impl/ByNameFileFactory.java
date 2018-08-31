@@ -1,4 +1,6 @@
-package drakonli.jcomponents.file.factory;
+package drakonli.jcomponents.file.impl;
+
+import drakonli.jcomponents.file.IByNameFileFactory;
 
 import java.io.File;
 

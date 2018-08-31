@@ -1,6 +1,7 @@
-package drakonli.jcomponents.notificator;
+package drakonli.jcomponents.impl;
 
-import drakonli.jcomponents.alert.ISimpleAlertFactory;
+import drakonli.jcomponents.INotificator;
+import drakonli.jcomponents.ISimpleAlertFactory;
 import javafx.scene.control.Alert;
 
 public class AlertNotificator implements INotificator
