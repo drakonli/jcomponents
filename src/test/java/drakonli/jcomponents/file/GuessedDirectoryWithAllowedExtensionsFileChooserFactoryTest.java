@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.chooser;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.GuessedDirectoryWithAllowedExtensionsFileChooserFactory;
 import javafx.stage.FileChooser;
@@ -14,7 +14,6 @@ import static org.junit.Assert.assertTrue;
 
 public class GuessedDirectoryWithAllowedExtensionsFileChooserFactoryTest
 {
-
     @Test
     public void createFileChooser()
     {

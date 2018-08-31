@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.backuper;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.ByNameFileFactory;
 import drakonli.jcomponents.file.impl.DoNotOverwriteFileSystemFileBackuper;

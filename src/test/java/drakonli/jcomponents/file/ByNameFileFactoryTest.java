@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.factory;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.ByNameFileFactory;
 import org.junit.Test;

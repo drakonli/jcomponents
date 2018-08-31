@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.writer.factory;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.BufferedCharsetFileWriterFactory;
 import org.junit.Assert;

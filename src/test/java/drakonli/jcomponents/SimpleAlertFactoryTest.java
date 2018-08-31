@@ -1,4 +1,4 @@
-package drakonli.jcomponents.alert;
+package drakonli.jcomponents;
 
 import drakonli.jcomponents.impl.SimpleAlertFactory;
 import drakonli.util.JavaFXThreadingRule;

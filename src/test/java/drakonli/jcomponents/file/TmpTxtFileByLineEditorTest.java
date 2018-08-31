@@ -1,11 +1,8 @@
-package drakonli.jcomponents.file.editor.txt.tmp;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.ITxtLineEditor;
 import drakonli.jcomponents.ITxtLinePredicate;
 import drakonli.jcomponents.exception.NoLineQualifiedForEditException;
-import drakonli.jcomponents.file.IBufferedFileReaderFactory;
-import drakonli.jcomponents.file.IFileManager;
-import drakonli.jcomponents.file.IFileWriterFactory;
 import drakonli.jcomponents.file.impl.TmpTxtFileByLineEditor;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package drakonli.jcomponents.file.reader.buffered.charset;
+package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.BufferedCharsetLineEndingIncludedFileReaderFactory;
 import org.junit.Assert;

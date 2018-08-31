@@ -1,5 +1,6 @@
-package drakonli.jcomponents.file.impl;
+package drakonli.jcomponents.file;
 
+import drakonli.jcomponents.file.impl.BufferedReaderLineEndingIncluded;
 import org.junit.Test;
 
 import java.io.File;
