@@ -1,60 +1,75 @@
 package drakonli.jcomponents.file;
 
-import drakonli.jcomponents.file.impl.ByNameFileFactory;
 import drakonli.jcomponents.file.impl.DoNotOverwriteFileSystemFileBackuper;
-import drakonli.jcomponents.file.impl.NioFileManager;
-import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class DoNotOverwriteFileSystemFileBackuperFunctionalTest
 {
-    private DoNotOverwriteFileSystemFileBackuper backuper;
+    @Mock
+    IByNameFileFactory fileFactory;
+    @Mock
+    IFileManager       fileManager;
+    @Mock
+    File               initialFileMock;
+    @Mock
+    File               backupFileMock;
+    @Mock
+    Path               initialFilePathMock;
+    @Mock
+    Path               backupFilePathMock;
+
+    String fileName = "somefile.txt";
+
+    protected DoNotOverwriteFileSystemFileBackuper testedBackuper;
 
     @Before
     public void setUp()
     {
-        this.backuper = new DoNotOverwriteFileSystemFileBackuper(
-                new ByNameFileFactory(),
-                new NioFileManager("tmp_file", ".txt")
+        this.testedBackuper = new DoNotOverwriteFileSystemFileBackuper(
+                this.fileFactory,
+                this.fileManager
         );
     }
 
     @Test
     public void testBackup() throws IOException
     {
-        File testFile = new File("src/test/resources/file_for_test_backup.txt");
-        File backupFile = new File(testFile.getName());
+        when(this.initialFileMock.getName()).thenReturn(this.fileName);
+        when(this.initialFileMock.toPath()).thenReturn(this.initialFilePathMock);
+        when(this.fileFactory.create(this.fileName)).thenReturn(this.backupFileMock);
+        when(this.backupFileMock.isFile()).thenReturn(false);
+        when(this.backupFileMock.toPath()).thenReturn(this.backupFilePathMock);
 
-        this.backuper.backup(testFile);
+        this.testedBackuper.backup(this.initialFileMock);
 
-        assertTrue("File was not backed-up properly", backupFile.isFile());
-
-        backupFile.deleteOnExit();
+        verify(this.fileManager).copy(
+                this.initialFilePathMock,
+                this.backupFilePathMock,
+                StandardCopyOption.REPLACE_EXISTING
+        );
     }
 
     @Test
     public void testBackupWithoutOverwrite() throws IOException
     {
-        File testFile = new File("src/test/resources/file_for_test_backup.txt");
+        when(this.initialFileMock.getName()).thenReturn(this.fileName);
+        when(this.fileFactory.create(this.fileName)).thenReturn(this.backupFileMock);
+        when(this.backupFileMock.isFile()).thenReturn(true);
 
-        File backupFile = new File(testFile.getName());
-        Files.copy(testFile.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        this.testedBackuper.backup(this.initialFileMock);
 
-        File overwriteFile = new File("src/test/resources/overwrite/file_for_test_backup.txt");
-
-        this.backuper.backup(overwriteFile);
-
-        assertFalse("Backuper should not overwrite a file", FileUtils.contentEquals(overwriteFile, backupFile));
-
-        backupFile.deleteOnExit();
+        verify(this.fileManager, never()).copy(any(), any(), any());
     }
 }

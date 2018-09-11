@@ -1,21 +1,31 @@
 package drakonli.jcomponents.file;
 
 import drakonli.jcomponents.file.impl.ByNameFileFactory;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
 public class ByNameFileFactoryTest
 {
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+
     @Test
-    public void create()
+    public void create() throws IOException
     {
-        ByNameFileFactory factory = new ByNameFileFactory();
+        File newFolder = this.folder.newFolder();
 
-        File file = factory.create("someName.txt");
+        ByNameFileFactory factory = new ByNameFileFactory(newFolder);
 
-        assertEquals(file, new File("someName.txt"));
+        File actualFile = factory.create("someName.txt");
+
+        File expectedFile = new File(newFolder, "someName.txt");
+
+        assertEquals(expectedFile, actualFile);
     }
 }
